@@ -1,5 +1,5 @@
 import './style.css';
-import {Application, Assets, FederatedPointerEvent, Graphics, Rectangle} from "pixi.js";
+import {Application, Assets, FederatedPointerEvent, Rectangle} from "pixi.js";
 import {manifest} from "./manifest.ts";
 import {Tank} from "./Tank.ts";
 import {Easing, Tween} from "@tweenjs/tween.js";
