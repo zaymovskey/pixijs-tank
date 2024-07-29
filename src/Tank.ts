@@ -1,40 +1,43 @@
-import {AnimatedSprite, Container, Sprite, Texture} from "pixi.js";
-import {EnumTankTexturesAliases} from "./manifest.ts";
+import { AnimatedSprite, Container, Sprite, Texture } from "pixi.js";
+import { EnumTankTexturesAliases } from "./manifest.ts";
 
 const createAnimatedSprite = (
   texturesAliases: string[],
   speed: number,
-  position: {x: number, y: number} | number = {x: 0, y: 0},
-  anchor: {x: number, y: number} | number = {x: 0.5, y: 0.5},
+  position: { x: number; y: number } | number = { x: 0, y: 0 },
+  anchor: { x: number; y: number } | number = { x: 0.5, y: 0.5 },
 ) => {
   const animatedSprite = new AnimatedSprite(
-    texturesAliases.map(alias => Texture.from(alias
-    ))
+    texturesAliases.map((alias) => Texture.from(alias)),
   );
   animatedSprite.animationSpeed = speed;
-  const settingPosition = typeof position === 'number' ? [position] : Object.values(position);
+  const settingPosition =
+    typeof position === "number" ? [position] : Object.values(position);
   animatedSprite.position.set(...settingPosition);
 
-  const settingAnchor = typeof anchor === 'number' ? [anchor] : Object.values(anchor);
+  const settingAnchor =
+    typeof anchor === "number" ? [anchor] : Object.values(anchor);
   animatedSprite.anchor.set(...settingAnchor);
 
   return animatedSprite;
-}
+};
 
 const createSprite = (
   textureAlias: string,
-  position: {x: number, y: number} | number = {x: 0, y: 0},
-  anchor: {x: number, y: number} | number = {x: 0.5, y: 0.5}
+  position: { x: number; y: number } | number = { x: 0, y: 0 },
+  anchor: { x: number; y: number } | number = { x: 0.5, y: 0.5 },
 ) => {
   const sprite = new Sprite(Texture.from(textureAlias));
-  const settingPosition = typeof position === 'number' ? [position] : Object.values(position);
+  const settingPosition =
+    typeof position === "number" ? [position] : Object.values(position);
   sprite.position.set(...settingPosition);
 
-  const settingAnchor = typeof anchor === 'number' ? [anchor] : Object.values(anchor);
+  const settingAnchor =
+    typeof anchor === "number" ? [anchor] : Object.values(anchor);
   sprite.anchor.set(...settingAnchor);
 
   return sprite;
-}
+};
 
 export class Tank {
   public _view: Container = new Container();
@@ -58,31 +61,49 @@ export class Tank {
   constructor() {
     // Body
     this._trackLeft = createAnimatedSprite(
-      [EnumTankTexturesAliases.TrackCFrame1, EnumTankTexturesAliases.TrackCFrame2],
+      [
+        EnumTankTexturesAliases.TrackCFrame1,
+        EnumTankTexturesAliases.TrackCFrame2,
+      ],
       this._trackAnimationSpeed,
-      {x: 0, y: -80}
+      { x: 0, y: -80 },
     );
 
     this._trackRight = createAnimatedSprite(
-      [EnumTankTexturesAliases.TrackCFrame1, EnumTankTexturesAliases.TrackCFrame2],
+      [
+        EnumTankTexturesAliases.TrackCFrame1,
+        EnumTankTexturesAliases.TrackCFrame2,
+      ],
       this._trackAnimationSpeed,
-      {x: 0, y: 80}
+      { x: 0, y: 80 },
     );
     this._bodyContainer.addChild(this._trackLeft);
     this._bodyContainer.addChild(this._trackRight);
 
-    this._hull = createSprite(EnumTankTexturesAliases.HeavyHullB, undefined, 0.5);
+    this._hull = createSprite(
+      EnumTankTexturesAliases.HeavyHullB,
+      undefined,
+      0.5,
+    );
     this._bodyContainer.addChild(this._hull);
     this._view.addChild(this._bodyContainer);
 
-
     // Tower
-    this._gunLeft = createSprite(EnumTankTexturesAliases.HeavyGunB, {x: 140, y: -27});
-    this._gunRight = createSprite(EnumTankTexturesAliases.HeavyGunB, {x: 160, y: 29});
+    this._gunLeft = createSprite(EnumTankTexturesAliases.HeavyGunB, {
+      x: 140,
+      y: -27,
+    });
+    this._gunRight = createSprite(EnumTankTexturesAliases.HeavyGunB, {
+      x: 160,
+      y: 29,
+    });
     this._towerContainer.addChild(this._gunLeft);
     this._towerContainer.addChild(this._gunRight);
 
-    this._gunConnector = createSprite(EnumTankTexturesAliases.GunConnectorD, {x: 80, y: 0});
+    this._gunConnector = createSprite(EnumTankTexturesAliases.GunConnectorD, {
+      x: 80,
+      y: 0,
+    });
     this._towerContainer.addChild(this._gunConnector);
 
     this._tower = createSprite(EnumTankTexturesAliases.HeavyTowerB);
@@ -92,7 +113,7 @@ export class Tank {
   }
 
   get view() {
-    return this._view
+    return this._view;
   }
 
   set towerDirection(value: number) {
@@ -112,7 +133,7 @@ export class Tank {
   }
 
   get x() {
-    return this._view.position.x
+    return this._view.position.x;
   }
 
   set x(value: number) {
@@ -120,7 +141,7 @@ export class Tank {
   }
 
   get y() {
-    return this._view.position.y
+    return this._view.position.y;
   }
 
   set y(value: number) {
