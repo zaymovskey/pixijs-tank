@@ -1,5 +1,7 @@
 import { AssetsManifest } from "pixi.js";
 
+export const TANK_BUNDLE_NAME = 'tank';
+
 export enum EnumTankTexturesAliases {
   GunConnectorD = 'GunConnectorD',
   HeavyGunB = 'HeavyGunB',
@@ -12,7 +14,7 @@ export enum EnumTankTexturesAliases {
 
 export const manifest: AssetsManifest = {
   bundles: [
-    { name: 'tank', assets: [
+    { name: TANK_BUNDLE_NAME, assets: [
         { alias: EnumTankTexturesAliases.GunConnectorD, src: 'src/assets/parts/gun_connectors/GunConnectorD.png' },
 
         { alias: EnumTankTexturesAliases.HeavyGunB, src: 'src/assets/parts/guns/HeavyGunB.png'},

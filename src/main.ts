@@ -1,6 +1,6 @@
 import './style.css';
 import {Application, Assets, FederatedPointerEvent, Rectangle} from "pixi.js";
-import {manifest} from "./manifest.ts";
+import {manifest, TANK_BUNDLE_NAME} from "./manifest.ts";
 import {Tank} from "./Tank.ts";
 import {Easing, Tween} from "@tweenjs/tween.js";
 
@@ -15,7 +15,7 @@ const init = async () => {
 
   await Assets.init({ manifest });
 
-  await Assets.loadBundle(['tank']);
+  await Assets.loadBundle([TANK_BUNDLE_NAME]);
 }
 
 await init();
